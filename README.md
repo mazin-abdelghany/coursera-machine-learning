@@ -2,11 +2,15 @@
 
 This repo serves as a set of notes that I have taken while completing the Machine Learning Coursera course by Andrew Ng. There is a markdown file for each week of the course with notes on the content, best practices, common pitfalls, and any other musings on that week's material. I completed the coding assignments on Ubuntu Desktop using a `miniconda` environment that contained `Octave`. Coding assigments are&mdash;of course&mdash;**not** uploaded to maintain academic integrity.
 
-I have included two other files here in this repo:
+I have also included two other files in this repo:
 1. Derivation of normal equation and regularized linear regression.pdf
-2. log_reg.Rmd
+2. Implementation of logistic regression in R  
+&nbsp;&nbsp;&nbsp;&nbsp;a. log_reg.Rmd  
+&nbsp;&nbsp;&nbsp;&nbsp;b. AbdelghanyMazin_log_reg_function_R.pdf
 
-Document 1 is a derivation 
+**Document 1** has two sections. The first is a derivation in LaTeX of the normal equation. The second shows that regularized linear regression can be interpreted as linear regression with a Bayesian prior normal distribution over the betas. Please note that theta in the markdown notes corresponds to beta in the included derivations.
+
+**Document 2a** is an implementation of logistic regression in R using RMarkdown. **Document 2b** is the output of this RMarkdown file in pdf format.
 
 For reference, below are the 11 weeks of the course, their corresponding content, and the associated `Octave` coding assignment.  
 
