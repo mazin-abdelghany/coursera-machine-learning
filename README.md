@@ -5,12 +5,13 @@ This repo serves as a set of notes that I have taken while completing the Machin
 I have also included two other files in this repo:
 1. Derivation of normal equation and regularized linear regression.pdf
 2. Implementation of logistic regression in R  
-&nbsp;&nbsp;&nbsp;&nbsp;a. log_reg.Rmd  
-&nbsp;&nbsp;&nbsp;&nbsp;b. log_reg_output.pdf
+&nbsp;&nbsp;&nbsp;&nbsp;a. Dataset_students.mat  
+&nbsp;&nbsp;&nbsp;&nbsp;b. log_reg.Rmd  
+&nbsp;&nbsp;&nbsp;&nbsp;c. log_reg_output.pdf
 
 **Document 1** has two sections. The first is a derivation in LaTeX of the normal equation. The second shows that regularized linear regression can be interpreted as linear regression with a Bayesian prior normal distribution over the betas. Please note that theta in the markdown notes corresponds to beta in the included derivations.
 
-**Document 2a** is an implementation of logistic regression in R using RMarkdown. **Document 2b** is the output of this RMarkdown file in pdf format.
+**Document 2a** is the dataset used in Document 2b. **Document 2b** is an implementation of logistic regression in R using RMarkdown. **Document 2c** is the output of this RMarkdown file in pdf format.
 
 For reference, below are the 11 weeks of the course, their corresponding content, and the associated `Octave` coding assignment.  
 
