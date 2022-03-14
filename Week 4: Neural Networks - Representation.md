@@ -25,9 +25,9 @@
 		- Term hidden layer comes from not "seeing" the values that are computed in that layer
 		- There can be several hidden layers
 
-#### Forward propogation
-- The act of stepping through the computations from the input layer through the hidden layer(s) to the output layer is called forward (or feedforward) propogation
-- Feedforward propogation is through the following steps:
+#### Forward propagation
+- The act of stepping through the computations from the input layer through the hidden layer(s) to the output layer is called forward (or feedforward) propagation
+- Feedforward propagation is through the following steps:
 ```
 In pseudocode:
 
