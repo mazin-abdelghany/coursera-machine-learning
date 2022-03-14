@@ -59,7 +59,7 @@ For reference, below are the 11 weeks of the course, their corresponding content
 	- Motivations
 	- Neural Networks
 	- Applications
-- **Programming assignment:** Implement the Feedforward Propogation Algorithm of a Neural Network
+- **Programming assignment:** Implement Multiclass Classification and the Feedforward Propogation Algorithm of a Neural Network
 
 ### Week 5: Neural Networks - Learning
 - Learning
