@@ -71,4 +71,4 @@ repeat until convergence {
 - Performing gradient descent using all the available training examples
 
 ### Linear Algebra Review
-- Notes on this section are omited
+- Notes on this section are omitted
