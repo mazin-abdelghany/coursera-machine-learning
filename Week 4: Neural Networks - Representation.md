@@ -26,3 +26,55 @@
 		- There can be several hidden layers
 
 #### Forward propogation
+- The act of stepping through the computations from the input layer through the hidden layer(s) to the output layer is called forward (or feedforward) propogation
+- Feedforward propogation is through the following steps:
+```
+In pseudocode:
+
+for n, where n is the number of layers {
+	- Add the bias unit to feature vectors or obtained activations
+	- Perform matrix vector multiplication 
+		- where the vector is the feature vector or activations and the matrix is the parameters/weights
+	- Apply the activation function (in this case sigmoid)--this obtains the activations for the next layer
+}
+```
+- The neural network is using the inputs to "learn" its own more complex features (the hidden layer(s)) which it then uses to draw a more complex decision boundary and output predictions
+
+#### Examples and intuition
+- Neural networks can be used to predict logical functions (such as AND, OR, XOR, XNOR)
+```
+Logical AND
+
+x0 \
+x1 --> g(z) --> h_theta(x)
+x2 /
+
+g(x) is the logistic function
+Assume theta(1) = [-30, 20, 20]
+
+x1  |  x2  |  output
+----|------|--------     output calculations for each respective row:
+  0 |   0  |    0        h_theta = sigmoid( -30 + 20*0 + 20*0) = 0
+  1 |   0  |    0        h_theta = sigmoid( -30 + 20*1 + 20*0) = 0
+  0 |   1  |    0        h_theta = sigmoid( -30 + 20*0 + 20*1) = 0
+  1 |   1  |    1        h_theta = sigmoid( -30 + 20*1 + 20*1) = 0
+```
+
+#### Multiclass classification using neural networks
+- Same as one v. all for logistic regression
+- If the goal was to clasify grades of cancer, as an example&mdash;grade 1, 2, 3, or 4 the targets (y) would be the following vectors:
+```
+grade 1    grade 2    grade 3    grade 4
+  1           0          0          0
+  0           1          0          0
+  0           0          1          0
+  0           0          0          1
+```
+and the neural network would output predictions in the form of:
+```
+prediction
+  1
+  0 
+  0 
+  0 
+```
