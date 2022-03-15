@@ -7,7 +7,8 @@ What if your algorithm has large error; what should be done next? Start with the
 	- Try a smaller set of features
 	- Get more features
 	- Try adding polynomial features
-	- Try decreasing lamda
+	- Try decreasing lambda
+	- Try increasing lambda
 	
 Some of these techniques, such as getting more training examples or getting more features for the training examples already present can take time and be costly. How can we assess which of these methods will improve the model performance?  
 
@@ -44,4 +45,54 @@ Some of these techniques, such as getting more training examples or getting more
 
 #### Bias v. variance
 - The most likely reason for a poorly functioning predictive model is either a bias problem (underfitting) or a variance problem (overfitting)
-[[./bias-variance-error|width=100px]]
+<div>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/bias-variance-error" alt="bias-variance-graph" align="left" width = 30%/>
+</div>
+
+This graph represents the [model selection](#model-selection-problems) problem defined above. THe degree of polynomial is on the x-axis and the error is on the y-axis. The training error will continue to decrease as the degree of polynomial increases. Though the error becomes near zero at the highest degree polynomials (far right of the graph), this has clearly overfit the data because the crossvalidation error has risen significantly (data is overfit; high variance). On the contrary, lower degree polynomials (far left of the graph) have a high training **and** crossvalidation error (data is underfit; high bias).  
+
+The optimal degree polynomial is a the inflection point of the crossvalidation erorr.
+<br/>
+<br/>
+
+#### Regularization and bias/variance
+- Suppose a linear regression model is fit using regularization:
+	- If lambda is large, the parameters are reduced significantly and only the intercept term remains&mdash;there is high bias
+	- If lambda is small, the parameters are not reduced&mdash;there is high variance
+- Lambda can be chosen based on the above example of choosing the degree of polynomial
+	- As an aside, lambda values to assess = 0, 0.01, 0.02, 0.04, ... , 10 (doubling each time)
+- Train models using multiple lambdas
+- Use each model to test on the crossvalidation set and choose the lambda on the lowest crossvalidation error
+- Test the final model on the test set
+
+#### Learning curves
+- Plot training error and crossvalidation error (y-axis) by the number of training examples (x-axis)
+- If the model has high bias, then:
+	- the crossvalidation error does not decrease significantly regardless of the number of training examples
+	- the training error approximates the crossvalidation error
+	- the training and crossvalidation error are both large at large training examples
+	- **NB: getting more training examples will not help!**
+- If the model has high variance, then:
+	- as the training set size increases, the training error will increase, but remain relatively low
+	- the crossvalidation error will decrease, but remain high
+	- there will be a gap between the training error and the crossvalidation error
+	- **NB: getting more training examples is likely to help!**
+
+#### Deciding what to do next revisited
+From [Deciding what to try next](#deciding-what-to-try-next), here are some options:
+| What to do next | What it fixes |
+|-----------------|---------------|
+| Get more training examples | Fixes high variance |
+| Try a smaller set of features | Fixes high variance |
+| Get more features | Fixes high bias |
+| Try adding polynomial features | Fixes high bias|
+| Try decreasing lambda | Fixes high bias |
+| Try increasing lambda | Fixes high variance |  
+
+#### Neural networks and overfitting
+- Small neural networks have fewer parameters and are prone to underfitting
+	- Computationally cheap
+- Large neural networks have more parameters and are prone to overfitting
+	- Computationally expensive
+- Using regularization with a large neural network is almost always better than using a smaller neural network
+- Can use the above train/crossvalidate/test paradigm above to choose a neural network architecture as well!
