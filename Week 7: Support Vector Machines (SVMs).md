@@ -76,6 +76,80 @@ This can also be written as K(x, L(1) where K is the Gaussian kernel.
 ```
 Given m training examples: (x(1), y(1)), (x(2), y(2)), ... , (x(m), y(m))
 There will be m landmarks: L(1) = x(1) , L(2) = x(2),  ... , L(m) = x(m)
-And features will be computed by:
 
+Give example x, features will be computed by:
+    f1 = similarity(x, L(1))   remember L(1) = x(1)
+    f2 = similarity(x, L(2))
+    .
+    .
+    fm = similarity(x, L(m))
+
+f_vector = [f0, f1 f2 f3 ... fm]   with f0 = 1
+
+For a training example (x(i), y(i)):
+f(i)1 = similarity(x(i), L(1))
+f(i)2 = similarity(x(i), L(2))
+            .
+	    .
+f(i)i = similarity(x(i), L(i)) = 1
+            .
+f(i)m = similarity(x(m), L(i))
+
+f(i)_vector = [f(i)0 f(i)1 f(i)2 ... f(i)m]
 ```
+Given an example x and thetas,
+1. compute the features f_vector as above
+2. predict y = 1 if theta_transpose * f >= 0
+
+To find the thetas, minimize the cost function above replacing theta_transpose * x(i) with theta_transpose * f(i)
+
+- As an aside, kernels and generating new features can be applied to other algorithms such as logistic regression, but they are computationally expensive, so are not widely used
+
+##### SVM parameters
+C:  
+Remember, C = 1/lambda, therefore:
+- Large C (e.g., small lambda): lower bias, higher variance
+- Small C (e.g., large lambda): higher bias, lower variance
+
+Sigma:
+- Large sigma: features f vary more smoothly&mdash;higher bias, lower variance
+- Small sigma: features vary less smoothly&mdash;lower bias, higher variance
+
+#### Applying SVMs in practice
+- Need to choose C and sigma
+- Need to choose a kernel
+	- Linear kernel might be good for large number of features (n) and small number of training examples (m)
+		- There may be a concern for overfitting given the small number of training examples
+	- Gaussian kernel might be good for n small and m is large
+		- Must choose sigma 
+		- Some SVM functions require you to generate the similarity function (kernel)
+		- **NB: Feature scaling is imporant before applying the Gaussian kernels!**
+
+Not all similarity functions make valid kernels. They need to satisfy a technical condition called "Mercer's Theorem" to make sure SVM packages' optimizations run correctly and do not diverge.
+
+Other off-the-shelf kernels:
+- These esoteric kernels are rarely used
+	- Polynomial kernel (almost always performs worse than the Gaussian kernel)
+	- String kernel for input data are strings
+	- Chi-square kernel
+	- Histogram kernel
+	- Intersection kernel
+
+#### Multiclass classification
+- Most SVM kernels have multiclass classifications implemented
+- Can also use one v. all classfication as discussed in prior weeks
+
+#### Logistic regression v. SVM
+Again, n = number of features, m = number of traning examples
+- If n is large (relative to m), e.g., n >= m, n = 10,000 m = 10 - 1000:
+	- Use logistic regression or SVM without a kernel ("linear kernel")
+- If n is small, m is intermediate, e.g., n = 1 - 1000, m = 10 - 10,000:
+	- Use SVM with a Gaussian kernel
+- If n is small, m is large, e.g., n = 1 - 1000, m = 50,000+:
+	- SVM with Gaussian kernel packages run slowly with massive training set
+	- Manually create/add more features, then use logistic regression or SVM without a kernel
+	
+Other considerations:
+- Logistic regression is similar to SVM without a kernel.
+- A well-designed neural network is likely to work well for most of these settings, but may be slower to train.
+- SVM is a convex optimization problem.
