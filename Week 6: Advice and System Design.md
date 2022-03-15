@@ -44,4 +44,4 @@ Some of these techniques, such as getting more training examples or getting more
 
 #### Bias v. variance
 - The most likely reason for a poorly functioning predictive model is either a bias problem (underfitting) or a variance problem (overfitting)
-- 
+[[./bias-variance-error|width=100px]]
