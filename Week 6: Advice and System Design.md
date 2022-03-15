@@ -161,7 +161,7 @@ true positive / (true positives + false negative)
 	- predict 1 if h_theta(x) >= 0.5
 	- predict 1 if h_theta(x) < 0.5
 - If a high threshold is set (i.e., 0.7 or 0.9), then the model will have higher precision, but lower recall
-- If a lower threshold is set (i.e., 0.3 or 0.1), then the model will have a lower precision, but lower recall
+- If a lower threshold is set (i.e., 0.3 or 0.1), then the model will have a lower precision, but higher recall
 
 ##### How can we compare precision/recall numbers?
 - A single real number metric is much easier to interpret
