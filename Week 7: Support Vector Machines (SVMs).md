@@ -27,4 +27,4 @@ SVM cost: C * sum(y(i) * cost_1(theta_transpose * x(i)) + (1-y(i)) * cost_1(thet
 SVMs predicts 1 or 0, not a probability.
 
 #### Large margin intuition
-
+- SVMs are considered "large margin classifiers"
