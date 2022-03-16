@@ -133,10 +133,12 @@ Choose the iteration with the lowest cost
 	- use the first k columns of the matrix U (n x k size)
 - z (the new features) = U_transpose * x
 - The vectorized implementation of the above is:
+```
 	- sigma = 1/m * X_transpose * X
 	- [U, S, V] = svd(sigma) # compute the eigenvectors using singular value decomposition
-	- Ureduce = U(:,1:k)     # get the first k columns of U (number of dimensions to reduce to)
+	- U_reduce = U(:,1:k)     # get the first k columns of U (number of dimensions to reduce to)
 	- z = U_transpose * x    # obtain the new features z
+```
 
 #### Reconstruction from compressed representation
 - While z (new features) = Ureduce_tranpose * x (old features),
