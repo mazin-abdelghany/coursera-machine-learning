@@ -90,3 +90,30 @@ Applications of anomaly detection vs. supervised learning
 | fraud detection                        | email spam classification |
 | manufacturing (e.g., aircraft engines) | weather prediction        |
 | monitoring machines in data center     | cancer classification     |
+
+If there are a lot of anomalies, any of the above examples could shift to the supervised learning column.  
+
+#### Optimizing available features for anomaly detection
+- This has a lot of impact on how well the anomaly detection works
+- Plot the data to ensure that it looks vaguely Gaussian
+	- Though the algorithm works OK if the data are not Gaussian, data transformations to make the distribution look more Gaussian (e.g., log-transform, square root, cube root)
+
+#### Error analysis for anomaly detection
+- Want p(x) large for normal examples and p(x) small for anomalous examples
+- Most common problem:
+	- p(x) is comparable (say, both large) for normal and anomalous example
+- Look at how the wrongly-classified anomaly and try to find a new feature that is clearly different from the non-anomalous examples
+
+#### Choosing features for anomaly detection
+- Choose features that might take on unusually large or small values in the event of an anomaly
+- As an example, monitoring a computer cluster:
+	- x1 = memory use of computer
+	- x2 = number of disk accesses/second
+	- x3 = CPU load
+	- x4 = network traffic
+- Suppose CPU load and network traffic grow linearly with each other
+- Perhaps one of the failure cases one of the machines will get stuck in an infinite loop
+	- CPU load high, but network traffic low
+	- Maybe the new feature would be: CPU load/network traffic
+		- This will be large in anomaly and small in non-anomaly
+
