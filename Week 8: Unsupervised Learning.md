@@ -135,9 +135,9 @@ Choose the iteration with the lowest cost
 - The vectorized implementation of the above is:
 ```
 	- sigma = 1/m * X_transpose * X
-	- [U, S, V] = svd(sigma) # compute the eigenvectors using singular value decomposition
-	- U_reduce = U(:,1:k)     # get the first k columns of U (number of dimensions to reduce to)
-	- z = U_transpose * x    # obtain the new features z
+	- [U, S, V] = svd(sigma)        # compute the eigenvectors using singular value decomposition
+	- U_reduce = U(:,1:k)           # get the first k columns of U (number of dimensions to reduce to)
+	- z = U_reduce_transpose * x    # obtain the new features z
 ```
 
 #### Reconstruction from compressed representation
