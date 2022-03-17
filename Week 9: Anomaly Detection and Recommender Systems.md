@@ -152,7 +152,9 @@ Terminology:
 - The recommender system problem is, given the empty cells, predict the likely rating for each user and movie
 
 #### Content-based recommender systems
-- Suppose for each movie, there are associated features, e.g.,
+- Suppose for each movie, there are associated features, e.g.,  
+
+
 | Movie                | Alice (1) | Bob (2) | Carol (3) | Dave (4) | x1 (romance) | x2 (action) |
 |----------------------|-----------|---------|-----------|----------|--------------|-------------|
 | Love at last         | 5         | 5       | 0         | 0        | 0.9          | 0           |
@@ -161,3 +163,43 @@ Terminology:
 | Nonstop car chases   | 0         | 0       | 5         | 4        | 0.1          | 1           |
 | Swords v. karate     | 0         | 0       | 5         |          | 0            | 0.9         |
 
+Therefore, each movie can be represented as a feature vector, x(1) = [1 0.9 0].
+- x(1) ... x(5) would be the feature vectors for each movie
+- For each user j, learn a parameter theta_j, and predict user j as rating movie i with theta_j_transpose * x(i)
+- Contretely, Alice (user 1) would have a theta_1 parameter vector
+	- Predicting Cute puppies of love would be theta_1_tranpose * x(3)
+		- theta_1 is associated with Alice
+		- x(3) is associated with Cute puppies of love
+- Formally,
+	- r(i,j) = 1 if user j has rated movie i
+	- y(i,j) = rating given by user j to movie i
+	- theta_j = parameter vector for user j
+	- x(i) = feature vector for movie i
+	- m(j) = no. of movies rated by user j
+- To learn theta_j, this is a linear regression problem
+	- minimize the sum of the squared error term summed over all movies that the user has rated 
+- To learn theta_1 to theta_nu, sum over all users as well as all movies
+
+There are cases where these features of each movie are not available and content-based systems will not work.
+
+#### Collaborative filtering
+- Assume the features are blank:  
+
+
+| Movie                | Alice (1) | Bob (2) | Carol (3) | Dave (4) | x1 (romance) | x2 (action) |
+|----------------------|-----------|---------|-----------|----------|--------------|-------------|
+| Love at last         | 5         | 5       | 0         | 0        | ?          | ?           |
+| Romance forever      | 5         |         |           | 0        | ?            | ?        |
+| Cute puppies of love |           | 4       | 0         |          | ?         | ?           |
+| Nonstop car chases   | 0         | 0       | 5         | 4        | ?          | ?           |
+| Swords v. karate     | 0         | 0       | 5         |          | ?            | ?         |
+
+- Given by the users, parameter vectors, the features x1 and x2 can be inferred.
+- It turns out that by combining the above content based system with the method of giving parameters, the following system can be devised:
+	- Guess theta find x, use x to improve thetas, use thetas to improve x ... until convergence
+- This system works, of course, with the knowledge that there are some subset of users rating some disparate subset of movies
+- These data over time can be used to improve the thetas and features learned by the **collaborative filtering algorithm**
+
+1. Initialize x(1), ..., x(n), theta(1), ..., theta(n) to small random values
+2. Minimize cost function J(x(1), ..., x(n), theta(1), ..., theta(n)) using gradient descent (or an advnaced optimization algorithm)
+3. For a user with parameters theta and a movie with (learned) features x, predict a star rating of theta_transpose * x
