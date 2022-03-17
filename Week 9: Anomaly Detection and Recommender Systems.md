@@ -203,3 +203,7 @@ There are cases where these features of each movie are not available and content
 1. Initialize x(1), ..., x(n), theta(1), ..., theta(n) to small random values
 2. Minimize cost function J(x(1), ..., x(n), theta(1), ..., theta(n)) using gradient descent (or an advnaced optimization algorithm)
 3. For a user with parameters theta and a movie with (learned) features x, predict a star rating of theta_transpose * x
+
+Collaborative filter is the same as low rank matrix factorization.
+Mean normalization helps to ensure the collaborative filtering algorithm function for users who have not rated any products/movies.
+- Users who haven't rated anything, this sets the user to have the mean ratings
