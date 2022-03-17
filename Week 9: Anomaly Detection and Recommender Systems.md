@@ -117,3 +117,47 @@ If there are a lot of anomalies, any of the above examples could shift to the su
 	- Maybe the new feature would be: CPU load/network traffic
 		- This will be large in anomaly and small in non-anomaly
 
+Optional material included modeling anomaly detection using a multivariate Gaussian distribution. This is accomplished by modeling the mean of all of the features as a vector and the variance as a covariance matrix. This allows the model to capture correlations within the data that would otherwise be lost if anomaly detection was performed using the above described method. In other words, the above model can only fit Gaussian distributions that are axis-aligned, i.e., unable to model correlations between features. This special case is when the covariate matrix has zeros in all places other than its diagnoal.  
+
+| Original model                                                                                 | Multivariate Gaussian                                                                       |
+|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Manually create features to capture anomalies where x1, x2 take unusual combinations of values | Automatically captures correlations between features                                        |
+| Computationally cheaper (scales better to large n such as >10,000)                             | Computationally more expensive                                                              |
+| OK even if m (training set size) is small                                                      | Must have m > n or else covariance matrix is non-invertible. It is preferred that m >= 10n. |
+
+Covariance matrix may also be non-invertible of features are redundant.  
+
+#### Recommender systems
+Predicting movie ratings:
+- Allow users to rate movies using zero to five stars  
+
+| Movie                | Alice (1) | Bob (2) | Carol (3) | Dave (4) |
+|----------------------|-----------|---------|-----------|----------|
+| Love at last         | 5         | 5       | 0         | 0        |
+| Romance forever      | 5         |         |           | 0        |
+| Cute puppies of love |           | 4       | 0         |          |
+| Nonstop car chases   | 0         | 0       | 5         | 4        |
+| Swords v. karate     | 0         | 0       | 5         |          |
+
+Empty cells are movies that have not been rated.  
+
+Terminology:
+- nu = no. users
+- nm = no. movies
+- r(i,j) = 1 if user j has rated movie i
+- y(i,j) = rating given by user j to movie i
+	- defined only if r(i,j) = 1
+
+- Above, nu = 4, nm = 5
+- The recommender system problem is, given the empty cells, predict the likely rating for each user and movie
+
+#### Content-based recommender systems
+- Suppose for each movie, there are associated features, e.g.,
+| Movie                | Alice (1) | Bob (2) | Carol (3) | Dave (4) | x1 (romance) | x2 (action) |
+|----------------------|-----------|---------|-----------|----------|--------------|-------------|
+| Love at last         | 5         | 5       | 0         | 0        | 0.9          | 0           |
+| Romance forever      | 5         |         |           | 0        | 1            | 0.01        |
+| Cute puppies of love |           | 4       | 0         |          | 0.99         | 0           |
+| Nonstop car chases   | 0         | 0       | 5         | 4        | 0.1          | 1           |
+| Swords v. karate     | 0         | 0       | 5         |          | 0            | 0.9         |
+
