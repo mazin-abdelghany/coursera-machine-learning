@@ -20,4 +20,6 @@ If the result of plotting the learning curve on the first 1,000 training example
 
 #### Stochastic gradient descent
 - A modification of gradient descent that optimizes for large datasets
-- 
+<div align="center">
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/batch-v-stochastic-gradient-descent.png" alt="batch-v-stochastic-gradient-descent" width=100%/>
+</div>
