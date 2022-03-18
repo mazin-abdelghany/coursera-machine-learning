@@ -8,6 +8,16 @@
 - Imagine a dataset with m = 100,000,000, gradient descent would have to sum over 100,000,000 training examples
 
 #### Why not use 1,000 examples?
-- Perhaps training on 1,000 examples will do just as wel
-- The easiest way to assess this is to plot the learning curves
- 
+- Perhaps training on 1,000 examples will do just as well
+- The easiest way to assess this is to plot the learning curves of the training cost and the crossvalidation cost
+<div>
+	<a href="https://www.dataquest.io/blog/learning-curves-machine-learning/">
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/learning-curves.png" align="left" alt="learning-curves-graph" width = 70%/>
+	</a>
+</div>  
+
+If the result of plotting the learning curve on the first 1,000 training examples is the **left panel**, the model likely has high bias and will not benefit from the addition of more training examples to improve its performance. If the result of plotting the learning curves is instead the **right panel**, the model likely has high variance and would indeed benefit from the addition of more training examples.  
+
+#### Stochastic gradient descent
+- A modification of gradient descent that optimizes for large datasets
+- 
