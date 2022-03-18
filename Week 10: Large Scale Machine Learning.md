@@ -23,3 +23,10 @@ If the result of plotting the learning curve on the first 1,000 training example
 <div align="center">
 	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/batch-v-stochastic-gradient-descent.png" alt="batch-v-stochastic-gradient-descent" width=100%/>
 </div>
+
+#### Mini-batch gradient descent
+- Batch gradient descent: use all m examples
+- Stochastic gradient descent: use 1 example in each iteration
+- Mini-batch gradient descent: use b examples in each iteration
+	- b = mini-batch size
+	- If b = 10, use the first 10 examples to update parameters
