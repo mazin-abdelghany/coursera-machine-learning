@@ -67,12 +67,19 @@ The optimal degree polynomial is a the inflection point of the crossvalidation e
 
 #### Learning curves
 - Plot training error and crossvalidation error (y-axis) by the number of training examples (x-axis)
-- If the model has high bias, then:
+<div align="center">
+	<a href="https://www.dataquest.io/blog/learning-curves-machine-learning/">
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/learning-curves.png" alt="learning-curves-graph" width = 70%/>
+	</a>
+</div>  
+
+
+- If the model has high bias (left panel), then:
 	- the crossvalidation error does not decrease significantly regardless of the number of training examples
 	- the training error approximates the crossvalidation error
 	- the training and crossvalidation error are both large at large training examples
 	- **NB: getting more training examples will not help!**
-- If the model has high variance, then:
+- If the model has high variance (right panel), then:
 	- as the training set size increases, the training error will increase, but remain relatively low
 	- the crossvalidation error will decrease, but remain high
 	- there will be a gap between the training error and the crossvalidation error
