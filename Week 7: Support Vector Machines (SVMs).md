@@ -30,7 +30,7 @@ SVMs predicts 1 or 0, not a probability.
 #### Large margin intuition
 - SVMs are considered "large margin classifiers"
 <div align="center">
-  <img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/svm-cost-and-graph.png" alt-text="SVM cost function and associated graphs" width=50%/>
+  <img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/svm-cost-and-graph.png" alt-text="SVM cost function and associated graphs" width=50%/>
 </div>
 <p align="center">On the left is the cost_1(z) function and on the right is the cost_0(z) function.</p>  
 
