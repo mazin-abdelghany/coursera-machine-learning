@@ -46,7 +46,7 @@ Some of these techniques, such as getting more training examples or getting more
 #### Bias v. variance
 - The most likely reason for a poorly functioning predictive model is either a bias problem (underfitting) or a variance problem (overfitting)
 <div>
-	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/bias-variance-error" alt="bias-variance-graph" align="left" width = 30%/>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/bias-variance-error" alt="bias-variance-graph" align="left" width = 30%/>
 </div>
 
 This graph represents the [model selection](#model-selection-problems) problem defined above. THe degree of polynomial is on the x-axis and the error is on the y-axis. The training error will continue to decrease as the degree of polynomial increases. Though the error becomes near zero at the highest degree polynomials (far right of the graph), this has clearly overfit the data because the crossvalidation error has risen significantly (data is overfit; high variance). On the contrary, lower degree polynomials (far left of the graph) have a high training **and** crossvalidation error (data is underfit; high bias).  
@@ -69,7 +69,7 @@ The optimal degree polynomial is a the inflection point of the crossvalidation e
 - Plot training error and crossvalidation error (y-axis) by the number of training examples (x-axis)
 <div align="center">
 	<a href="https://www.dataquest.io/blog/learning-curves-machine-learning/">
-	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/learning-curves.png" alt="learning-curves-graph" width = 70%/>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/learning-curves.png" alt="learning-curves-graph" width = 70%/>
 	</a>
 </div>  
 
