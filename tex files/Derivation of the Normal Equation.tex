@@ -1,0 +1,401 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{parskip}
+\counterwithin*{equation}{subsubsection}
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+    \section{Derive the normal equation}
+	Given a data \textbf{X},\textbf{y} and assuming a probabilistic model given by $y=\beta^{T}x+\epsilon$ where $\epsilon\sim Normal(0,\sigma^2)$, show that the $\beta$ that maximizes the probability of obtaining the data is given by: $\beta=(X^{T}X)^{-}X^{T}y$.
+	
+	\subsection{Solution}
+	\subsubsection{Feature space}
+	Assume $m$ training examples $(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),...,(x^{(m)},y^{(m)})$ with $n$ features $x_1, x_2,...,x_n$. At index 0, let $x^{(1)}_0, x^{(2)}_0,..., x^{(i)}_0,...,x^{(n)}_0$ all equal 1. Therefore, if there are $n$ features and a 0th index, there will be $n+1$ feature vectors.
+	
+	Let $X$ be the design matrix of $n+1$ feature vectors $x^{(i)}_{n+1}$ where $x^{(i)}$ denotes the $i$-th $n+1$-dimensional feature vector contained within $X$. 
+	
+	Thus, each row of the matrix $X$ is filled by $(x^{(1\:\text{to}\:m)})^{T}$, making $X$ an $m\times(n+1)$-dimensional matrix of all the features of the training data:
+	
+	\begin{equation*}
+	x^{(i)} = \begin{bmatrix}
+	x^{(i)}_0\\x^{(i)}_1\\x^{(i)}_2\\.\\x^{(i)}_n
+	\end{bmatrix}\in\rm I\!R^{n+1}\qquad
+	X=\begin{bmatrix}
+	x^{(1)}_0&x^{(1)}_1&x^{(1)}_2&.&.&.&x^{(1)}_n\\
+	x^{(2)}_0&x^{(2)}_1&x^{(2)}_2&.&.&.&x^{(2)}_n\\
+	.&.&.&.&.&.&.\\
+	x^{(i)}_0&x^{(i)}_1&x^{(i)}_2&.&.&.&x^{(i)}_n\\
+	.&.&.&.&.&.&.\\
+	x^{(m)}_0&x^{(m)}_1&x^{(m)}_2&.&.&.&x^{(m)}_n
+	\end{bmatrix}
+	\end{equation*}
+		
+	Let $y$ be the vector of true values of the above described training examples.
+	
+	\begin{equation*}
+	y=\begin{bmatrix}
+	y_1\\y_2\\.\\.\\y_m
+	\end{bmatrix}
+	\end{equation*}
+	
+	\subsubsection{Hypothesis function}
+	Given the hypothesis function:
+	$$
+	h_\beta(x)=\beta_0x_0+\beta_1x_1+...+\beta_nx_n
+	$$
+	(Recall that $x_0$ = 1.)
+	
+	The above hypothesis function can be represented using matrix notation. The regression coefficients of hypothesis function $h_
+	\beta(x)$ can be represented as an $n+1$-dimensional vector:
+	\begin{equation*}
+	\beta=\begin{bmatrix}
+	\beta_0\\\beta_1\\\beta_2\\.\\.\\.\\\beta_n
+	\end{bmatrix}\in\rm I\!R^{n+1}
+	\end{equation*}
+	
+	Similarly, each of the $m$ training examples is an $n+1$-dimensional vector $\Bigg[\begin{smallmatrix}
+	x^{(i)}_0\\x^{(i)}_1\\.\\x^{(i)}_n
+	\end{smallmatrix}\Bigg]$ with $x^{(i)}_0=1$ to allow for a convenient vector multiplication.
+	
+	Thus, the hypothesis function for each $x_i$, $h_\beta(x_i)$, can be written as:
+	\begin{equation*}
+	h_\beta(x_i)=\beta^{T}x+\epsilon
+	\end{equation*}
+	where $\beta$ and $x_i$ are $n+1$-dimensional vectors, and $\epsilon$ is the normally distributed error for each observation.
+	
+	\subsubsection{Training error}
+	The training error for the above generalized example could be expanded algebraically as:
+	\begin{equation*}
+	Error\:(\epsilon)=\begin{bmatrix}
+	y_1 - (\beta_0x^{(1)}_0+\beta_1x^{(1)}_1+\beta_2x^{(1)}_2+...+\beta_nx^{(1)}_n)\\
+	y_2 - (\beta_0x^{(2)}_0+\beta_1x^{(2)}_1+\beta_2x^{(2)}_2+...+\beta_nx^{(2)}_n)\\
+	y_3 - (\beta_0x^{(3)}_0+\beta_1x^{(3)}_1+\beta_2x^{(3)}_2+...+\beta_nx^{(3)}_n)\\
+	...\\
+	...\\
+	y_m - (\beta_0x^{(m)}_0+\beta_1x^{(m)}_1+\beta_2x^{(m)}_2+...+\beta_nx^{(m)}_n)
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\epsilon_1\\
+	\epsilon_2\\
+	\epsilon_3\\
+	.\\
+	.\\
+	\epsilon_m
+	\end{bmatrix}\in\rm I\!R^{m}
+	\end{equation*}
+	
+	This can be simplified using matrix notation and the matrices that were defined above. $y_{1\:\text{to}\:m}$ in the matrix above correspond to the matrix $y$ of true values. The $\beta_{0\:\text{to}\:n}$ correspond to the matrix $\beta$ of regression coefficients. The $x_{0\:\text{to}\:n}$ correspond to the design matrix $X$ of the $m\times(n+1)$-dimensional feature space.
+	
+	Using matrix addition and multiplication, the above matrix simplifies to:
+	\begin{equation*}
+	Error\:(\epsilon) =y_{m\times1}- X_{m\times n+1}\beta_{n+1}\in\rm I\!R^{m}
+	\end{equation*}
+	(The subscripts denote the dimensions of these matrices for convenience.)
+	
+	\subsubsection{Deriving the cost function}
+	The likelihood of obtaining the model parameters from the data is given by:
+	\begin{equation*}
+	\mathcal{L}(\beta|y,X)=\Pr(X|\beta)
+	\end{equation*}
+	where $\mathcal{L}$ is the likelihood, $X$ is the design matrix (i.e., the data), and $\beta$ is the vector of model parameters.
+	
+	The probability of the data $X$ given the model parameters $\beta$ is the joint probability of each individual data point:
+	\begin{equation*}
+	\Pr(X|\beta)=\prod_{i=1}^{m}\Pr(y_i|x_i,\beta)
+	\end{equation*}
+	
+	It is given that $\epsilon\sim Normal(0,\sigma)$. As the noise $\epsilon$ is additive, the linearity condition implies that $\Pr(y_i|x_i,\beta)\sim Normal(\beta^{T}x_i,\sigma_\epsilon^2)$.
+	
+	The goal is to find a set of model parameters $\beta$ that maximize the likelihood. Taking the logarithm of both sides helps simplify the equation. Since the logarithm is a monotonic function, the maximum of the log-likelihood occurs at the same value of $\beta$ as the maximum of the likelihood. Thus, taking the $\ln$ of both sides:
+	\begin{align*}
+	\ln\mathcal{L}(\beta)&= \ln \prod_{i=1}^{m}\Pr(y_i|x_i,\beta)\\
+	&=\sum_{i=1}^{m}\left[\ln \Pr(y_i|x_i,\beta)\right]\\
+	&=\sum_{i=1}^{m}\left[-\frac{1}{2\sigma_\epsilon^2}(y_i-\beta^Tx_i)^2-\ln \left(\sqrt{2\pi\sigma_\epsilon^2}\right)\right]
+	\end{align*}
+	The last step follows because $\Pr(y_i|x_i\beta)$ is a Gaussian probability density as noted above.
+	
+	As the goal is to maximize the above likelihood (or more precisely, log-likelihood) in terms of the model parameters, the above terms that do not depend on $\beta$ (i.e., $-\frac{1}{2\sigma_\epsilon^2}$, $-\ln \sqrt{2\pi\sigma_\epsilon^2}$) can be ignored. Thus, the optimization problem can be written as:
+	\begin{equation*}
+	\ln\mathcal{L}(\beta)=\sum_{i=1}^{m}(y_i-\beta^Tx_i)^2
+	\end{equation*}
+	This is the sum of least squares!
+	
+	\subsubsection{Rewriting the cost function using matrices}
+	The goal is to minimize the least-squares cost function:
+	\begin{equation*}
+	J(\beta_{0...n})= \frac{1}{2m}\sum_{i=1}^{m}(y_i - h_\beta(x^{(i)}))^2
+	\end{equation*}
+	where, as above, $x^{(i)}$ is the $i$-th sample from a set of $m$ samples and $y^{(i)}$ is the $i$-th true value.
+	
+	Because the term $h_\beta(x^{(i)})-x^{(i)}=\epsilon^{(i)}$, i.e.,
+	
+	\begin{equation*}
+	J(\beta_{0...n})= \frac{1}{2m}\sum_{i=1}^{m}(y_i - h_\beta(x^{(i)}))^2=\frac{1}{2m}\sum_{i=1}^{m}\epsilon_i^2
+	\end{equation*}
+	
+	another way of stating this problem is minimizing the sum of the squared errors in the $Error$ vector $\epsilon$, i.e., $\epsilon^{T}\times\epsilon$. Concretely,
+	
+	\begin{equation*}
+	\sum_{i=1}^{m}\epsilon_i^2 = \begin{bmatrix}
+	\epsilon_1&\epsilon_2&\epsilon_3&.&.&\epsilon_m
+	\end{bmatrix}
+	*
+	\begin{bmatrix}
+	\epsilon_1\\
+	\epsilon_2\\
+	\epsilon_3\\
+	.\\
+	.\\
+	\epsilon_m
+	\end{bmatrix}=\epsilon_1^2+\epsilon_2^2+\epsilon_3^2+...+\epsilon_m^2
+	\end{equation*}
+	
+	As above, $\epsilon=y-X\beta$. Thus,
+	\begin{equation*}
+	J(\beta_{0...n})=\frac{1}{2m}(y-X\beta)^{T}(y-X\beta)
+	\end{equation*}
+	
+	Ignoring the constant $\frac{1}{2m}$,
+	\begin{align*}
+	J(\beta_{0...n})&=(y^T-(X\beta^T))(y-X\beta)\\
+	&=y^Ty-y^TX\beta-(X\beta)^Ty+(X\beta)^TX\beta
+	\end{align*}
+	Take the transpose of the second term in the above equation $(y^TX\beta)^T=(X\beta)^Ty$. Thus,
+	\begin{align*}
+	J(\beta_{0...n})&=y^Ty-(X\beta)^Ty-(X\beta)^Ty+(X\beta)^TX\beta\\
+	&=y^Ty-2(X\beta)^Ty+(X\beta)^TX\beta
+	\end{align*}
+	Distribute the transpose in the last term and the final equation for $J(\beta_{0...n})$ is:
+	\begin{equation*}
+	J(\beta_{0...n})= y^Ty-2(X\beta)^Ty+\beta^{T}X^TX\beta
+	\end{equation*}
+	
+	\subsubsection{Minimizing the cost function}
+	In order to find the minimum of the cost function, the derivative of $J(\beta_{0...n})$ must be taken and then set to zero:
+	\begin{equation*}
+	\frac{\partial{J}}{\partial{\beta}}=0
+	\end{equation*}
+	
+	To simplify the operations, the derivative of each term of $J(\beta_{0...n})$ will be taken separately. $y^{T}y$ will be ignored given it has no $\beta$ terms and the derivative of a constant is 0.
+	\begin{equation*}
+	J(\beta_{0...n}) = P(\beta_{0...n})+Q(\beta_{0...n})+y^Ty
+	\end{equation*}
+	\begin{equation}
+	P(\beta_{0...n})=\beta^{T}X^TX\beta
+	\end{equation}
+	\begin{equation}
+	Q(\beta_{0...n})=-2(X\beta)^Ty
+	\end{equation}
+	
+	\paragraph{Differentiate $P(\beta_{0...n})$}~\\
+	\begin{equation*}
+	P(\beta_{0...n})=\beta^{T}X^TX\beta
+	\end{equation*}
+	
+	Importantly, the product $X^T_{n+1\times m}X_{m\times n+1}$ is a square, symmetrical $n+1 \times n+1$-dimensional matrix. For convenience $Z$ will be substituted for $X^TX$. Therefore, $P(\beta_{0...n})$ can be rewritten as: $\beta^TZ\beta$ where $Z$ is the square, symmetrical matrix defined above.
+	
+	For the case where a scalar $\alpha$ is given by
+	\begin{equation*}
+	\alpha=x^TAx
+	\end{equation*}
+	where x is $n\times1$, $A$ is $n\times n$, and $A$ does not depend on $x$:
+	\begin{align*}
+	\alpha &= \sum_{j=1}^{n}\sum_{i=1}^{n}a_{ij}x_ix_j\\
+	\frac{\partial\alpha}{\partial x_k}&=\sum_{j=1}^{n}a_{kj}x_j+\sum_{i=1}^{n}a_{ik}x_i\qquad\text{for the $k$th element of $x$}\\
+	\frac{\partial\alpha}{\partial x}&=x^TA^T+x^TA\hspace{53pt}\text{for all $k=1,2,...n$}\\
+	&=x^T(A^T+A)
+	\end{align*}
+	
+	For the special case where $A$ is a symmetrical matrix, $A^T=A$, therefore $(A^T+A)=2A$ and $\frac{\partial\alpha}{\partial x}=2x^TA$.
+	
+	Back to the problem at hand, $Z$ was noted to be a square, symmetrical matrix. Therefore,
+	\begin{align*}
+	P(\beta_{0...n})&=\beta^TZ\beta\\
+	\frac{\partial P}{\partial\beta}&=2\beta^TZ\\
+	&=2\beta^TX^TX\qquad\text{substituting $X^TX$ for $Z$}\\
+	&=2(\beta^TX^TX)^T\qquad\text{take the transpose}\\
+	&=2X^TX\beta
+	\end{align*}
+	
+	\paragraph{Differentiate $Q(\beta_{0...n})$}~\\
+	\begin{align*}
+	Q(\beta_{0...n})&=-2(X\beta)^Ty\\
+	&=-2\left( \begin{bmatrix}
+	x^{(1)}_0&x^{(1)}_1&x^{(1)}_2&.&.&.&x^{(1)}_n\\
+	x^{(2)}_0&x^{(2)}_1&x^{(2)}_2&.&.&.&x^{(2)}_n\\
+	.&.&.&.&.&.&.\\
+	x^{(i)}_0&x^{(i)}_1&x^{(i)}_2&.&.&.&x^{(i)}_n\\
+	.&.&.&.&.&.&.\\
+	x^{(m)}_0&x^{(m)}_1&x^{(m)}_2&.&.&.&x^{(m)}_n
+	\end{bmatrix}\begin{bmatrix}
+	\beta_0\\\beta_1\\\beta_2\\.\\.\\.\\\beta_n
+	\end{bmatrix}\right)^T\begin{bmatrix}
+	y_1\\y_2\\.\\.\\y_m
+	\end{bmatrix}\\
+	&=-2\left(\begin{bmatrix}
+	\beta_0x^{(1)}_0+\beta_1x^{(1)}_1+\beta_2x^{(1)}_2+...+\beta_nx^{(1)}_n\\
+	\beta_0x^{(2)}_0+\beta_1x^{(2)}_1+\beta_2x^{(2)}_2+...+\beta_nx^{(2)}_n\\
+	...\\
+	\beta_0x^{(i)}_0+\beta_1x^{(i)}_1+\beta_2x^{(i)}_2+...+\beta_nx^{(i)}_n\\
+	...\\
+	\beta_0x^{(m)}_0+\beta_1x^{(m)}_1+\beta_2x^{(m)}_2+...+\beta_nx^{(m)}_n
+	\end{bmatrix}\right)^T\begin{bmatrix}
+	y_1\\y_2\\.\\.\\y_m
+	\end{bmatrix}
+	\end{align*}
+	
+	\begin{multline*}
+	Q(\beta_{0...n})=-2[\:y_1(\beta_0x^{(1)}_0+...+\beta_nx^{(1)}_n)\\
+	+y_2(\beta_0x^{(2)}_0+...+\beta_nx^{(2)}_n)+...+y_m(\beta_0x^{(m)}_0+...+\beta_nx^{(m)}_n)\:]
+	\end{multline*}
+	
+	Rearranging the above using sums:	
+	\begin{align}
+	Q(\beta_{0...n})&=-2\sum_{r=1}^{m}y_r(\beta_0x_0^{(r)}+...+\beta_nx^{(r)}_n)\\
+	&=-2\sum_{r=1}^{m}y_r\sum_{s=1}^{n}\beta_sx_s^{(r)}
+	\end{align}
+	
+	Using equation (3) above to differentiate:	
+	\begin{equation*}
+	\frac{\partial Q}{\partial \beta}=-2\sum_{r=1}^{m}y_r(\beta_0x_0^{(r)}+...+\beta_nx^{(r)}_n) \partial \beta
+	\end{equation*}
+	
+	This can be rewritten as a series of partial derivatives:
+	\begin{align*}
+	\frac{\partial Q}{\partial \beta_0}&=-2(x_0^{(1)}y_1+x_1^{(1)}y_1+...+x_n^{(1)}y_m)\\
+	\frac{\partial Q}{\partial \beta_1}&=-2(x_0^{(2)}y_1+x_1^{(2)}y_1+...+x_n^{(2)}y_m)\\
+	\frac{\partial Q}{\partial \beta_2}&=-2(x_0^{(3)}y_1+x_1^{(3)}y_1+...+x_n^{(3)}y_m)\\
+	...\\
+	\frac{\partial Q}{\partial \beta_n}&=-2(x_0^{(m)}y_1+x_1^{(m)}y_1+...+x_n^{(m)}y_m)
+	\end{align*}
+	
+	This can be collapsed as a vector of partial derivatives:
+	\begin{equation*}
+	\begin{bmatrix}
+		\frac{\partial Q}{\partial \beta_0}\\
+		\frac{\partial Q}{\partial \beta_1}\\
+		\frac{\partial Q}{\partial \beta_2}\\
+		.\\
+		.\\
+		\frac{\partial Q}{\partial \beta_n}
+	\end{bmatrix}=-2\left(\begin{bmatrix}
+	x_0^{(1)}&x_1^{(1)}&x_2^{(1)}&.&.&x_n^{(1)}\\
+	x_0^{(2)}&x_1^{(2)}&x_2^{(2)}&.&.&x_n^{(2)}\\
+	.&.&.&.&.&.\\
+	.&.&.&.&.&.\\
+	x_0^{(m)}&x_1^{(m)}&x_2^{(m)}&.&.&x_n^{(m)}
+	\end{bmatrix}\right)^T\begin{bmatrix}
+	y_1\\
+	y_2\\
+	.\\
+	.\\
+	y_m
+	\end{bmatrix}
+	\end{equation*}
+	
+	In other words,
+	\begin{equation*}
+	\frac{\partial Q}{\partial \beta_0}=-2\frac{\partial (X\beta)^Ty}{\partial \beta_0}=-2X^Ty
+	\end{equation*}
+		
+	Putting this all together,
+	\begin{align*}
+	J(\beta_{0...n}) &= P(\beta_{0...n})+Q(\beta_{0...n})\\
+	\frac{\partial J}{\partial\beta}&=\frac{\partial P}{\partial \beta}+\frac{\partial Q}{\partial \beta_0}\\
+	&=2X^TX\beta-2X^Ty=0\qquad\text{and solve for $\beta$}\\
+	2X^TX\beta&=2X^Ty\\
+	X^TX\beta&=X^Ty\qquad\text{multiply both sides by $(X^TX)^-$}\\
+	\beta&=(X^TX)^-X^Ty\qquad\blacksquare
+	\end{align*}
+	
+	\section{Show that Regularized Linear Regression has a Bayesian interpretation}
+	Given data \textbf{X},\textbf{y} and assuming a linear model $y=\beta^Tx$ with a prior distribution over $\beta$ given by a normal distribution with mean 0, show that the $\beta$ that maximizes the probability of having obtained the data is given by:
+	\begin{equation*}
+	\beta=(X^TX+\lambda I)^- X^Ty
+	\end{equation*}
+	where $\lambda$ depends on the variance of the prior distribution.
+	
+	\subsection{Solution}
+	\subsubsection{Using Bayes' theorem to rephrase maximum likelihood estimation}
+	The maximum likelihood estimator discussed \textbf{2.1.4} can be related to the most probable Bayes estimator given a uniform prior distribution. The maximum \textit{a posteriori} estimate is the vector of parameters $\beta$ that maximize the probability of $\beta$ given the data. Using Bayes' theorem to write this:
+	\begin{equation*}
+	\Pr(\beta|x_1, x_2,...,x_n)=\frac{h(x_1, x_2,...,x_n|\beta)\Pr(\beta)}{\Pr(x_1, x_2,...,x_n)}
+	\end{equation*}
+	where $\Pr(\beta)$ is the prior distribution for the parameters $\beta$ and $\Pr(x_1, x_2,...,x_n)$ is the probability of obtaining the data. The denominator is independent of $\beta$, so the Bayesian estimator is obtained by maximizing $h(x_1, x_2,...,x_n|\beta)\Pr(\beta)$ with respect to $\beta$.
+	
+	In the derivation of the cost function in \textbf{2.1.4}, the Bayesian estimator could be considered to correspond to the maximum likelihood estimator for a uniform prior distribution of $\beta$s given by $\Pr(\beta)\sim Uniform(0,\beta)$. In other words, it is solving for $\Pr(data|\beta)$, i.e., the probability of obtaining the data given the parameters $\beta$.
+	
+	In contrast to finding $\Pr(data|\beta)$, here the problem is written as finding $\Pr(\beta|data)$, which is derived using Bayes' theorem and \textbf{prior} knowledge (i.e., a prior) of the distribution of $\beta$.
+	
+	In \textbf{Exercise 3}, the prior distribution of the $\beta$ vector is given as $\Pr(\beta)\sim Normal(0,\beta)$. Therefore, the Bayesian estimator can be rewritten as:
+	\begin{align*}
+	\Pr(\beta|data)&=\frac{\Pr(data|\beta)*prior}{\Pr(data)}\\
+	\Pr(\beta|x_1, x_2,...,x_n)&=h(x_1, x_2,...,x_n|\beta)\Pr(\beta)
+	\end{align*}
+	again ignoring the denominator because it is independent of $\beta$.
+	
+	\subsubsection{Maximum \textit{a posteriori} estimator}
+	The maximum \textit{a posteriori} extimator is then given by:
+	\begin{equation*}
+	\mathcal{L}(\beta|X)=\Pr(X|\beta)\Pr(\beta)
+	\end{equation*}
+	where $\mathcal{L}$ is the likelihood, $X$ is the design matrix (i.e., the data), $\beta$ is the vector of model parameters, and $\Pr(\beta)$ is given by the normal distribution as described above.
+	
+	The likelihood of the model parameters given the data is the joint probability of each individual data point multiplied by the prior:
+	\begin{equation*}
+	\mathcal{L}(\beta|X)=\Pr(\beta)\prod_{i=1}^{m}\Pr(y_i|x_i,\beta)
+	\end{equation*}
+	
+	As before, the log-likelihood is easier to work with:
+	\begin{align}
+	\ln\mathcal{L}(\beta|X)&=\ln\left[\Pr(\beta)\prod_{i=1}^{m}\Pr(y_i|x_i,\beta)\right]\\
+	&=\ln\Pr(\beta)+\sum_{i=1}^{m}\ln\left[\Pr(y_i|x_i,\beta)\right]
+	\end{align}
+	
+	From \textbf{2.1.4} above, the second term $\sum_{i=1}^{m}\ln\left[\Pr(y_i|x_i,\beta)\right]$ is the sum of squared residuals $\sum_{i=1}^{m}(y_i-\beta^Tx_i)^2$.
+	
+	To gain an intuition of how the first term can be written as a sum, assume the parameters $\beta$ are distributed normally and independently around the origin with variance $\sigma^2_\beta$, as given:
+	\begin{align*}
+	\Pr(\beta)&=\prod_{i=0}^{n}\Pr(\beta_i)\\
+	&=\frac{1}{2\pi\sigma_\beta^2}\exp\left(-\frac{\sum_{i=0}^{n}\beta_i^2}{2\sigma_\beta^2}\right)\\
+	&=\frac{1}{2\pi\sigma_\beta^2}\exp\left(-\frac{\beta^T\beta}{2\sigma_\beta^2}\right)\qquad\text{written as a vector}\\
+	\ln\Pr(\beta)&=-\frac{1}{2\sigma_\beta^2}\beta^T\beta\qquad\text{taking the $\ln()$ of both sides}
+	\end{align*}
+	
+	Plugging this back into equation (2) above and rewriting the sum of least squares in matrix form (see \textbf{2.1.5}), we obtain the below. Recall that the objective can be multiplied by any scalar without affecting the optimum:
+	\begin{align*}
+	\ln\mathcal{L}(\beta|X)&=-\frac{1}{2\sigma_\beta^2}\beta^T\beta-\left(\frac{1}{2\sigma_\epsilon^2}(y-X\beta)^{T}(y-X\beta)\right)\\
+	&=-\frac{\sigma_\epsilon^2}{\sigma_\beta^2}\beta^T\beta-(y-X\beta)^{T}(y-X\beta)
+	\end{align*}
+	
+	Rather than maximizing the above function, the signs can be reversed and the function minimized:
+	\begin{align*}
+	\ln\mathcal{L}(\beta|X)&=\frac{\sigma_\epsilon^2}{\sigma_\beta^2}\beta^T\beta+(y-X\beta)^{T}(y-X\beta)\qquad\text{set $\frac{\sigma_\epsilon^2}{\sigma_\beta^2}=\lambda$}\\
+	&=\beta^{T}X^TX\beta+\lambda\beta^T\beta-2\beta^TX^Ty\\
+	\end{align*}
+	
+	The first and third terms' partial derivatives with respect to $\beta$  were proven above in \textbf{Exercise 2}:
+	\begin{equation*}
+	2X^TX\beta-2X^Ty
+	\end{equation*}
+	
+	The second term's partial derivative with respect to $\beta$ is:
+	\begin{equation*}
+	2\lambda\beta
+	\end{equation*}
+	
+	Putting this all together:
+	\begin{equation*}
+	\frac{\partial\mathcal{L}}{\partial\beta}=2X^TX\beta-2X^Ty+2\lambda\beta
+	\end{equation*}
+	Set the derivative equal to 0 to minimize, and then solve for $\beta$. The $\lambda$ term, recall, depends on the variance of the prior distribution:
+	\begin{align*}
+	0&=X^TX\beta-X^Ty+\lambda\beta\\
+	X^Ty&=X^TX\beta+\lambda\beta\\
+	X^Ty&=(X^TX+\lambda I)\beta\\
+	\beta&=(X^TX+\lambda I)^-X^Ty
+	\qquad\blacksquare
+	\end{align*}
+\end{document}
