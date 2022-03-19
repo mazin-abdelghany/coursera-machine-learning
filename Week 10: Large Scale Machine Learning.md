@@ -12,7 +12,7 @@
 - The easiest way to assess this is to plot the learning curves of the training cost and the crossvalidation cost
 <div>
 	<a href="https://www.dataquest.io/blog/learning-curves-machine-learning/">
-	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/learning-curves.png" align="left" alt="learning-curves-graph" width = 70%/>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/learning-curves.png" align="left" alt="learning-curves-graph" width = 70%/>
 	</a>
 </div>  
 
@@ -21,12 +21,12 @@ If the result of plotting the learning curve on the first 1,000 training example
 #### Stochastic gradient descent
 - A modification of gradient descent that optimizes for large datasets
 <div align="center">
-	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/batch-v-stochastic-gradient-descent.png" alt="batch-v-stochastic-gradient-descent" width=100%/>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/batch-v-stochastic-gradient-descent.png" alt="batch-v-stochastic-gradient-descent" width=100%/>
 </div>
 
 #### Mini-batch gradient descent
 <div>
-	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/mini-batch-gradient-descent.png" alt="mini-batch-gradient-descent" align="left" width = 40%/>
+	<img src="https://github.com/mazin-abdelghany/coursera-machine-learning/blob/main/images/mini-batch-gradient-descent.png" alt="mini-batch-gradient-descent" align="left" width = 40%/>
 </div>  
 
 
