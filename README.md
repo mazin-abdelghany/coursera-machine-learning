@@ -4,7 +4,8 @@ This repo serves as a set of notes that I have taken while completing the Machin
 
 I have also included four other files in this repo:
 1. Derivation of normal equation and regularized linear regression.pdf
-2. Implementation of logistic regression in R  
+&nbsp;&nbsp;&nbsp;&nbsp;a.TeX file included in /tex files/
+3. Implementation of logistic regression in R  
 &nbsp;&nbsp;&nbsp;&nbsp;a. Dataset_students.mat  
 &nbsp;&nbsp;&nbsp;&nbsp;b. log_reg.Rmd  
 &nbsp;&nbsp;&nbsp;&nbsp;c. log_reg_output.pdf
