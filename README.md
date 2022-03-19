@@ -1,6 +1,6 @@
 # Machine Learning - Coursera - Andrew Ng
 
-This repo serves as a set of notes that I have taken while completing the Machine Learning Coursera course by Andrew Ng. There is a markdown file for each week of the course with notes on the content, best practices, common pitfalls, and any other musings on that week's material. I completed the coding assignments on Ubuntu Desktop using a `miniconda` environment that contained `Octave`. Coding assigments are&mdash;of course&mdash;**not** uploaded to maintain academic integrity.
+This repo serves as a set of notes that I have taken while completing the Machine Learning Coursera course by Andrew Ng. There is a markdown file for each week of the course with notes on the content, best practices, common pitfalls, and any other musings on that week's material. The /images/ folder contains all the images used in the Markdown notes. I completed the coding assignments on Ubuntu Desktop using a `miniconda` environment that contained `Octave`. Coding assigments are&mdash;of course&mdash;**not** uploaded to maintain academic integrity.
 
 I have also included four other files in this repo:
 1. Derivation of normal equation and regularized linear regression.pdf
@@ -13,7 +13,7 @@ I have also included four other files in this repo:
 
 **Document 2a** is the dataset used in Document 2b. **Document 2b** is an implementation of logistic regression in R using RMarkdown. **Document 2c** is the output of this RMarkdown file in pdf format.
 
-For reference, below are the 11 weeks of the course, their corresponding content, and the associated `Octave` coding assignment.  
+For reference, below are the 11 weeks of the course, their corresponding content, and the associated `Octave` coding assignment.
 
 ## Table of contents:  
 [Week 1: Introduction](#week-1-introduction)  
