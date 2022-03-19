@@ -3,7 +3,7 @@
 This repo serves as a set of notes that I have taken while completing the Machine Learning Coursera course by Andrew Ng. There is a markdown file for each week of the course with notes on the content, best practices, common pitfalls, and any other musings on that week's material. The /images/ folder contains all the images used in the Markdown notes. I completed the coding assignments on Ubuntu Desktop using a `miniconda` environment that contained `Octave`. Coding assigments are&mdash;of course&mdash;**not** uploaded to maintain academic integrity.
 
 I have also included four other files in this repo:
-1. Derivation of normal equation and regularized linear regression.pdf
+1. Derivation of normal equation and regularized linear regression.pdf  
 &nbsp;&nbsp;&nbsp;&nbsp;a.TeX file included in /tex files/
 3. Implementation of logistic regression in R  
 &nbsp;&nbsp;&nbsp;&nbsp;a. Dataset_students.mat  
