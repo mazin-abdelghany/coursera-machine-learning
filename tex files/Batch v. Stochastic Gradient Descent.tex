@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{parskip}
+\usepackage{lscape}
+\usepackage{multicol}
+
+
+\begin{document}
+\begin{landscape}
+% lose the page number on this page
+\thispagestyle{empty}
+% start a 2 column page
+\begin{multicols}{2}
+
+\section*{(Batch) Gradient Descent}
+\begin{equation*}
+    J_{train}(\theta) = \frac{1}{2m} \sum_{i=1}^m(h_{\theta}(x^{(i)} - y^{(i)}))^2
+\end{equation*}
+
+Perform gradient descent by updating $\theta$ using the derivative of the cost function.
+
+Repeat for every  $j=0,...,n$ \{
+\begin{equation*}
+    \theta_j := \theta_j - \alpha\frac{1}{m}\sum_{i=1}^m(h_{\theta}(x^{(i)} - y^{(i)}))x_j^{(i)}
+\end{equation*}
+\}
+
+In large data sets, this summation would have to occur over every training example $m$ at every iteration of the for loop.
+
+% This code block below starts the new column
+\vfill
+\columnbreak
+% This code block above starts the new column
+
+\section*{Stochastic Gradient Descent}
+In stochastic gradient descent, the cost is rewritten as the cost of one training example:
+\begin{equation*}
+    cost(\theta, (x^{(i)}, y^{(i)})) = \frac{1}{2}(h_\theta(x^{(i)})-y^{(i)})^2
+\end{equation*}
+And thus the cost function is:
+\begin{equation*}
+    J_{train}(\theta) = \frac{1}{m}\sum_{i=1}^m cost(\theta, (x^{(i)}, y^{(i)}))
+\end{equation*}
+
+\begin{enumerate}
+    \item Randomly shuffle the dataset (randomly reorder the training examples
+    \item Repeat \{
+    \begin{description}
+    \item for $i=1,...,m$ \{
+    \item$\theta_j := \theta_j - \alpha h_\theta(x^{(i)}- y^{(i)})x^{(i)}_j$ \quad \textbf{note:} this is $\frac{\partial}{\partial\theta_j}cost$
+    
+    (for every $j=0,...,n$)
+    \item\}
+    \end{description}
+    \item[]\}
+\end{enumerate}
+In essence, stochastic gradient descent is updating the parameters $\Theta$ (the matrix of $\theta_{0,...,j}$) by stepping through each individual training example rather than summing across all training examples. The outer repeat loop is meant to symbolize that this process may have to be repeated over several iterations (e.g., 1-10 times) until pseudo-convergence.
+\end{multicols}
+\end{landscape}
+\end{document}
