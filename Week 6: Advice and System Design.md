@@ -2,7 +2,7 @@
 
 ### Evaluating a learning algorithm
 #### Deciding what to try next
-What if your algorithm has large error; what should be done next? Start with the concrete example of performing regularized linear regression to predict housing prices. Assume the model is performing poorly; here are some things to try: 
+What if your algorithm has large error; what should be done next? Start with the concrete example of performing regularized linear regression to predict housing prices. Assume the model is performing poorly; here are some things to try:  
 	- Get more training examples
 	- Try a smaller set of features
 	- Get more features
